@@ -1,0 +1,69 @@
+---
+title: "Class Exercise 10-29-15"
+output: html_document
+---
+
+Hey Larraga!
+So there are two solutions to the problem.  First, you can set your function to have empty elements, and then add value to your elements as needed.  Then, once you have that covered, you can start your for loop.  For example see below:
+
+#Method 1
+```{r}
+pop_df = data.frame(r = NA, gen = NA, N = NA)
+
+n1 <- 1
+k <- 1000
+ngen <- 4
+r_vals <- seq(from = 0.7, to = 3, by = 0.1)
+
+for (r in r_vals) {
+  N <- dgrowth(r = r, k = k, ngen = ngen, n1 = n1)
+  gen <- 1:ngen
+  r <- r
+  pop_df_r <- data.frame(r = r, gen = gen, N = N)
+  pop_df <- rbind(pop_df, pop_df_r)
+}
+```
+
+Or you can do the following:
+
+#Method 2
+```{r}
+install.packages("plyr")
+library(plyr) 
+
+pop_list <- list(NA)
+
+for (i in seq_along(r_vals)) {
+  N <- dgrowth(r = r_vals[i], k = k, ngen = ngen, n1 = n1)
+  r_vals[i]
+  gen <- 1:ngen
+  pop_list[[i]] <- data.frame(r = r_vals[i], gen = gen, N = N)
+}
+
+pop_df <- rbind.fill(pop_list)
+
+pop_df
+```
+
+Note that the above code creates an empty list, and then fills the list in.  Also note that you need to install plyr, and set it up with a library.  Lastly, keep in mind that you always need to define your elements as you write them.  I say this because I struggled to do that, and now understand what that means.  For example, I wanted to write:
+
+```{r}
+N <- dgrowth(r = r, k = k, ngen = ngen, n1 = n1)
+```
+
+instead of:
+
+```{r}
+N <- dgrowth(r = r_vals[i], k = k, ngen = ngen, n1 = n1)
+```
+
+Also, make sure to index what you are changing in your loop (for example your r_vals).  For example you would want to do this:
+
+```{r}
+r_vals[i]
+```
+
+Lastly, Jillian suggested using the Method 2 because you have everything laid out in front of you.  Essentially you are building each element/variable/vector, and then putting them all together in the end.  Rather than Method 1 which she indicates is code that is not as clean.
+
+I hope this all made sense, if some of it didn't, that is probably because I am not explaining it properly!  But we'll definitely talk about it more on Tuesday. :)
+
