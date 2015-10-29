@@ -65,5 +65,5 @@ r_vals[i]
 
 Lastly, Jillian suggested using the Method 2 because you have everything laid out in front of you.  Essentially you are building each element/variable/vector, and then putting them all together in the end.  Rather than Method 1 which she indicates is code that is not as clean.
 
-I hope this all made sense, if some of it didn't, that is probably because I am not explaining it properly!  But we'll definitely talk about it more on Tuesday. :)
+I hope this all made sense, if some of it didn't, that is probably because I am not explaining it properly!  But we'll definitely talk about it more on Tuesday. :) 
 
